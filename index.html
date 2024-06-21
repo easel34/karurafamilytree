@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Family Tree</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .hero {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('./images/karura\ family.png') center/cover no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color: white;
+            z-index: 1000;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 20px;
+        }
+
+        .hero h1 {
+            font-size: 5vw;
+            margin: 0 0 20px 0;
+            border-right: 0.15em solid orange;
+            white-space: nowrap;
+            overflow: hidden;
+            animation: typing 4s steps(40, end), blink-caret .75s step-end infinite;
+        }
+
+        .hero p {
+            font-size: 4vw;
+            margin: 0.5em 0;
+        }
+
+        .cta-button {
+            padding: 0.8em 2em;
+            background-color: #ff6600;
+            color: white;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            font-size: 4vw;
+            border-radius: 5px;
+            text-transform: uppercase;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .hidden {
+            transform: translateY(-100%);
+            opacity: 0;
+        }
+
+        .container {
+            opacity: 0;
+            transition: opacity 1s ease;
+            padding: 20px;
+        }
+
+        .container.visible {
+            opacity: 1;
+        }
+
+        .top-row, .bottom-row {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .image-container {
+            position: relative;
+            margin: 0 10px;
+            text-align: center;
+            width: 100px;
+        }
+
+        .image-container img {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .image-container p {
+            margin-top: 10px;
+            font-size: 3vw;
+            font-weight: bold;
+            position: relative;
+        }
+
+        .divider p {
+            font-size: 6vw;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .tooltip {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-top: 10px;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.75);
+            color: white;
+            border-radius: 5px;
+            white-space: nowrap;
+            z-index: 1;
+        }
+
+        .image-container:hover .tooltip {
+            display: block;
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: orange }
+        }
+
+        @media (min-width: 768px) {
+            .hero h1 {
+                font-size: 48px;
+            }
+
+            .hero p {
+                font-size: 1.5em;
+            }
+
+            .cta-button {
+                font-size: 1.2em;
+            }
+
+            .image-container {
+                width: 150px;
+            }
+
+            .image-container img {
+                width: 150px;
+                height: 150px;
+            }
+
+            .image-container p {
+                font-size: 16px;
+            }
+
+            .divider p {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="hero" id="hero">
+        <div class="hero-content">
+            <h1>Discover Your Family Roots</h1>
+            <p>Explore your ancestry and know your family</p><br><br>
+            <button class="cta-button" onclick="hideHero()">Get Started</button>
+        </div>
+    </header>
+
+    <main class="container" id="container">
+        <section class="top-row">
+            <div class="image-container">
+                <img src="./images/man.png" alt="Easel Kihiu">
+                <p>Bernard Karura</p>
+                <div class="tooltip">He is the Original Karura</div>
+            </div>
+            <div class="image-container">
+                <img src="/images/maito.jpg" alt="Easel Kihiu">
+                <p>Ruth Nyakinyi</p>
+                <div class="tooltip">Wife to Bernard Karura</div>
+            </div>
+        </section>
+        <div class="divider">
+            <p>∞</p>
+        </div>
+        <section class="bottom-row">
+            <div class="image-container">
+                <img src="./images/man.png" alt="Francis Kibe Benard">
+                <a href="./templates/parent/FrancisKibe.html"><p>Francis Kibe Benard</p></a>
+                <div class="tooltip">Son to Bernard Karura and Ruth Nyankinyi</div>
+            </div>
+            <div class="image-container">
+                <img src="./images/FRanco.jpg" alt="John Francis Kihiu">
+                <a href="./templates/parent/JohnFrancis.html"><p>John Francis Kihiu</p></a>
+                <div class="tooltip">Son to Bernard Karura and Ruth Nyankinyi</div>
+            </div>
+            <div class="image-container">
+                <img src="./images/man.png" alt="Joseph Njuguna">
+                <a href="./templates/parent/JosephNjuguna.html"><p>Joseph Njuguna</p></a>
+                <div class="tooltip">Son to Bernard Karura and Ruth Nyankinyi</div>
+            </div>
+            <div class="image-container">
+                <img src="./images/woman.png" alt="Mary Gathoni">
+                <a href="./templates/parent/MarGathoni.html"><p>Mary Gathoni</p></a>
+                <div class="tooltip">Daughter to Bernard Karura and Ruth Nyankinyi</div>
+            </div>
+            <div class="image-container">
+                <img src="./images/man.png" alt="Peter Macharia">
+                <a href="./templates/parent/PeterMacharia.html"><p>Peter Macharia</p></a>
+                <div class="tooltip">Son to Bernard Karura and Ruth Nyankinyi</div>
+            </div>
+            <div class="image-container">
+                <img src="./images/woman.png" alt="Martha Kabura">
+                <a href="./templates/parent/MarthaKabura.html"><p>Martha Kabura</p></a>
+                <div class="tooltip">Daughter to Bernard Karura and Ruth Nyankinyi</div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        function hideHero() {
+            document.getElementById('hero').classList.add('hidden');
+            document.getElementById('container').classList.add('visible');
+        }
+    </script>
+</body>
+</html>
+

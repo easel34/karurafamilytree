@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image and Text Layout</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(270deg, #ff7e5f, #feb47b, #86a8e7, #91eae4);
+            background-size: 800% 800%;
+            animation: gradientAnimation 15s ease infinite;
+            position: relative;
+        }
+        .container {
+            text-align: center;
+            width: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+            background: transparent;
+            border-radius: 15px;
+        }
+        .top-row, .bottom-row {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .image-container {
+            position: relative;
+            margin: 0 10px;
+            flex: 1 1 150px;
+            max-width: 150px;
+            cursor: pointer;
+        }
+        .image-container img {
+            border-radius: 50%;
+            width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            transition: transform 0.3s;
+        }
+        .image-container:hover img {
+            transform: scale(1.1);
+        }
+        .image-container p {
+            margin-top: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        .image-container:hover p {
+            color: #007BFF;
+        }
+        .divider p {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        .tooltip {
+            display: none;
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.75);
+            color: white;
+            border-radius: 5px;
+            white-space: nowrap;
+        }
+        .image-container:hover .tooltip {
+            display: block;
+        }
+        @keyframes scale {
+            0% {
+                transform: scale(0);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 30%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            justify-content: flex-start;
+            align-items: center;
+            animation: scale 0.15s ease;
+            overflow-y: auto;
+        }
+        .modal-content {
+            background-color: #2e2e2e;
+            padding: 20px;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 100%;
+            text-align: left;
+            position: relative;
+            color: white;
+            margin-top: 20px;
+        }
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
+            cursor: pointer;
+            color: white;
+        }
+        .button-container {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        .info-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .info-button:hover {
+            background-color: #0056b3;
+        }
+
+        @media (max-width: 600px) {
+            .image-container {
+                margin: 20px 0;
+            }
+            .image-container img {
+                width: 120px;
+                height: 120px;
+            }
+            .divider p {
+                margin: 20px 0;
+            }
+            .modal {
+                width: 100%;
+                height: 100%;
+                right: 0;
+                top: 0;
+                justify-content: center;
+            }
+            .modal-content {
+                margin-top: 0;
+                width: 100%;
+                height: 100%;
+                border-radius: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="top-row">
+            <div class="image-container">
+                <img src="/images/woman.png" alt="Landscape Image">
+                <p>Ruth Nyakinyi</p>
+                <div class="tooltip">Easel Kihiu - Information about Easel</div>
+            </div>
+        </div>
+        <div class="divider">
+            <p>∞</p>
+        </div>
+        <div class="bottom-row">
+            <div class="image-container">
+                <img src="/images/woman.png" alt="Landscape Image">
+                <a href="/templates/"><p>Sifa Rakeel</p></a>
+                <div class="tooltip">First Born to Ruth Nyakinyi</div>
+            </div>
+            <div class="image-container">
+                <img src="/images/woman.png" alt="Landscape Image">
+                <a href="/templates/"><p>Alice Briel</p></a>
+                <div class="tooltip">Second Born daughter to ruth Nyakinyi </div>
+            </div>
+        </div>
+    </div>
+    <div class="button-container">
+        <button class="info-button" onclick="openModal()">Learn More about them</button>
+    </div>
+    <div class="modal" id="infoModal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Ruth Nyakinyi's Family</h2>
+            <p>She is the first born daughter to peter macharia she is blessed with two children sifa and alice. She is a teacher at brookhurst international school.</p>
+        </div>
+    </div>
+    <script>
+        function openModal() {
+            document.getElementById('infoModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('infoModal').style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            var modal = document.getElementById('infoModal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
